@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade with Vikash | Stock Market Community</title>
+<meta name="description" content="Trade with Vikash — stock market education, market insights and trading community.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#020b07;
+  --bg2:#06140d;
+  --card:#071b11;
+  --card2:#0a2416;
+  --green:#39e75f;
+  --green2:#18b83e;
+  --lime:#9cff57;
+  --text:#f4fff6;
+  --muted:#91aa98;
+  --line:rgba(80,255,112,.18);
+  --shadow:rgba(35,230,80,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  color:var(--text);
+  font-family:Inter,sans-serif;
+  background:
+    radial-gradient(circle at 50% 15%,rgba(47,231,91,.12),transparent 34%),
+    radial-gradient(circle at 10% 50%,rgba(35,180,70,.08),transparent 30%),
+    var(--bg);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;opacity:.45;
+  background-image:
+    linear-gradient(rgba(80,255,112,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(80,255,112,.035) 1px,transparent 1px);
+  background-size:45px 45px;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(760px,92%);margin:auto;position:relative;z-index:1}
+
+.page{
+  min-height:100vh;
+  padding:24px 0 30px;
+  position:relative;
+}
+
+.ticker{
+  display:flex;justify-content:center;align-items:center;gap:10px;
+  flex-wrap:wrap;margin-bottom:12px;
+}
+.live{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 15px;border:1px solid var(--line);
+  border-radius:30px;background:rgba(8,35,20,.72);
+  color:var(--green);font-size:11px;font-weight:800;
+  letter-spacing:.16em;
+}
+.live i{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 12px var(--green);
+}
+.indices{
+  display:flex;justify-content:center;align-items:center;
+  gap:0;overflow:hidden;width:max-content;max-width:100%;
+  margin:auto;border:1px solid var(--line);
+  border-radius:14px;background:rgba(8,25,16,.8);
+}
+.index{
+  padding:10px 14px;font-size:11px;font-weight:700;
+  white-space:nowrap;border-right:1px solid var(--line);
+}
+.index:last-child{border-right:0}
+.index b{color:#fff}
+.index span{color:var(--green)}
+
+.profile{text-align:center;padding-top:24px}
+.logo{
+  width:82px;height:82px;object-fit:cover;border-radius:50%;
+  border:3px solid var(--green);
+  box-shadow:0 0 0 7px rgba(57,231,95,.07),0 0 35px var(--shadow);
+}
+h1{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(42px,8vw,68px);
+  line-height:1;
+  letter-spacing:-.045em;
+  margin-top:17px;
+}
+h1 span{
+  background:linear-gradient(90deg,#fff,var(--lime),var(--green));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.sub{
+  color:var(--green);font-weight:700;margin-top:10px;font-size:16px;
+}
+.tag{
+  color:#b9c8bd;margin-top:12px;font-size:12px;
+  letter-spacing:.19em;font-weight:700;
+}
+
+.label{
+  text-align:center;color:#7e9685;font-size:11px;
+  letter-spacing:.22em;margin-top:28px;font-weight:700;
+}
+.count{
+  text-align:center;font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(70px,15vw,132px);font-weight:700;
+  line-height:.95;margin-top:7px;
+  color:var(--green);
+  text-shadow:0 0 35px rgba(57,231,95,.16);
+}
+.count-caption{
+  text-align:center;color:#b0c1b5;font-size:12px;
+  letter-spacing:.18em;margin-top:8px;font-weight:600;
+}
+
+.join-under{
+  display:flex;justify-content:center;margin:18px 0 20px;
+}
+.join-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-width:270px;padding:14px 24px;border-radius:12px;
+  background:linear-gradient(135deg,var(--green),var(--green2));
+  color:#031007;font-weight:800;font-size:15px;
+  box-shadow:0 12px 35px rgba(57,231,95,.18);
+  transition:.25s;
+}
+.join-btn:hover{transform:translateY(-3px);box-shadow:0 17px 45px rgba(57,231,95,.27)}
+
+.bio{
+  display:flex;align-items:center;gap:15px;
+  padding:15px 18px;border:1px solid var(--line);
+  border-radius:16px;background:linear-gradient(135deg,rgba(12,42,23,.9),rgba(5,23,14,.85));
+  margin-bottom:22px;
+}
+.bio-icon{
+  width:45px;height:45px;border-radius:50%;
+  display:grid;place-items:center;flex:0 0 45px;
+  background:rgba(57,231,95,.13);color:var(--green);font-size:21px;
+}
+.bio h3{font-size:15px;margin-bottom:4px}
+.bio p{font-size:11px;line-height:1.55;color:var(--muted)}
+
+.section-title{
+  display:flex;align-items:center;gap:14px;justify-content:center;
+  color:var(--green);font-size:12px;letter-spacing:.24em;font-weight:800;
+  margin:22px 0 14px;
+}
+.section-title:before,.section-title:after{
+  content:"";height:1px;width:85px;background:linear-gradient(90deg,transparent,var(--green));
+}
+.section-title:after{background:linear-gradient(90deg,var(--green),transparent)}
+
+.features{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.feature{
+  padding:18px;border:1px solid var(--line);border-radius:15px;
+  background:linear-gradient(145deg,rgba(9,36,20,.96),rgba(4,20,12,.92));
+  min-height:125px;transition:.25s;
+}
+.feature:hover{transform:translateY(-3px);border-color:rgba(57,231,95,.4)}
+.icon{
+  width:38px;height:38px;border-radius:10px;
+  display:grid;place-items:center;background:rgba(57,231,95,.1);
+  color:var(--green);font-size:19px;margin-bottom:11px;
+}
+.feature h3{font-family:"Space Grotesk";font-size:15px;margin-bottom:6px}
+.feature p{color:#849d8b;font-size:11px;line-height:1.55}
+
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  margin-top:12px;border:1px solid var(--line);
+  border-radius:15px;overflow:hidden;background:rgba(5,25,14,.9);
+}
+.stat{text-align:center;padding:18px 8px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat strong{display:block;color:var(--green);font-family:"Space Grotesk";font-size:28px}
+.stat span{display:block;color:#8da492;font-size:9px;letter-spacing:.12em;margin-top:4px}
+
+.ad{
+  margin:18px auto 14px;width:max-content;max-width:100%;
+  border:1px solid var(--line);border-radius:12px;
+  padding:10px 15px;color:#8fa598;background:rgba(6,27,15,.8);
+  font-size:11px;text-align:center;
+}
+.ad a{color:var(--green);font-weight:700}
+
+.bottom-cta{
+  display:block;text-align:center;margin-top:18px;
+  padding:18px 20px;border-radius:14px;
+  background:linear-gradient(135deg,#39e75f,#1bbf43);
+  color:#031007;box-shadow:0 15px 45px rgba(57,231,95,.2);
+  transition:.25s;
+}
+.bottom-cta:hover{transform:translateY(-3px)}
+.bottom-cta strong{display:block;font-family:"Space Grotesk";font-size:20px}
+.bottom-cta small{display:block;margin-top:4px;font-weight:600}
+
+.timer{text-align:center;color:#819787;font-size:11px;margin-top:10px}
+.timer b{color:var(--green);font-family:monospace;font-size:14px;margin-left:5px}
+
+.disclaimer{
+  color:#647b6a;font-size:9px;line-height:1.65;text-align:center;
+  margin-top:24px;padding-bottom:8px;
+}
+
+footer{
+  text-align:center;color:#607767;font-size:10px;
+  padding:16px 0 0;border-top:1px solid rgba(80,255,112,.08);
+}
+footer a{color:var(--green)}
+
+@media(max-width:600px){
+  .page{padding-top:14px}
+  .indices{width:100%}
+  .index{padding:9px 8px;font-size:9px}
+  .logo{width:70px;height:70px}
+  .tag{font-size:9px;letter-spacing:.14em}
+  .features{grid-template-columns:1fr}
+  .feature{min-height:auto}
+  .stats{grid-template-columns:1fr}
+  .stat{border-right:0;border-bottom:1px solid var(--line)}
+  .stat:last-child{border-bottom:0}
+  .section-title:before,.section-title:after{width:45px}
+  .bio{align-items:flex-start}
+}
+
+/* Premium green upgrade */
+body{
+  background:#020806;
+  background-image:
+    linear-gradient(180deg,rgba(0,8,4,.48),rgba(0,8,4,.91)),
+    url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQkF8yLxCun8hnRK_sC6tKGEwQ_yacQeVFzC05QJTicsHtMkW7p_4DpPZA&s=10");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 50% 20%,rgba(50,255,90,.18),transparent 35%);}
+.hero{padding-top:120px!important}
+.logo{box-shadow:0 0 0 8px rgba(40,240,80,.08),0 0 45px rgba(40,240,80,.28)!important}
+.count{color:#43ef63!important;text-shadow:0 0 40px rgba(67,239,99,.25)}
+.join-btn,.btn-primary,.telegram-btn,.float-telegram{
+  background:linear-gradient(135deg,#63f76d,#16b83e)!important;
+  color:#031007!important;
+}
+.card,.feature,.stat,.market-card,.bio,.telegram{
+  background:linear-gradient(145deg,rgba(5,35,17,.88),rgba(2,14,8,.88))!important;
+  border-color:rgba(67,239,99,.22)!important;
+}
+.feature:hover,.card:hover{border-color:#43ef63!important}
+
+</head>
+
+<body>
+<div class="page">
+
+  <div class="container">
+
+    <div class="ticker">
+      <div class="live"><i></i>NSE&nbsp; • &nbsp;BSE&nbsp; • &nbsp;MCX&nbsp; LIVE</div>
+    </div>
+
+    <div class="indices">
+      <div class="index">NIFTY 50 &nbsp;<b>24,348.65</b> <span>▲ 1.85</span></div>
+      <div class="index">BANKNIFTY &nbsp;<b>52,504.59</b> <span>▲ 24.34</span></div>
+      <div class="index">SENSEX &nbsp;<b>80,164.23</b> <span>▲ 1.25</span></div>
+    </div>
+
+    <div class="profile">
+      <img class="logo"
+           src="https://growwvix.pro/wp-content/uploads/2026/08/viks-logo.jpg"
+           alt="Trade with Vikash">
+
+      <h1>Trade with <span>Vikash</span></h1>
+      <div class="sub">Stock Market Community</div>
+      <div class="tag">// MARKET INSIGHTS • EDUCATION • TRADING</div>
+    </div>
+
+    <div class="label">COMMUNITY SIZE</div>
+    <div class="count">16,455</div>
+    <div class="count-caption">ACTIVE SUBSCRIBERS</div>
+<div class="subscriber-cta">
+<a href="https://t.me/+qIx1EBRHNtM4MjVl" target="_blank" rel="noopener">✈️ Join Telegram Community</a>
+</div>
+
+
+    <!-- Button directly under subscriber count -->
+    <div class="join-under">
+      <a class="join-btn"
+         href="https://t.me/+qIx1EBRHNtM4MjVl"
+         target="_blank"
+         rel="noopener">
+        ✈️ Join Telegram Community
+      </a>
+    </div>
+
+    <div class="bio">
+      <div class="bio-icon">📊</div>
+      <div>
+        <h3>Trade with Vikash</h3>
+        <p>Market-focused educational content covering Nifty, BankNifty, technical concepts, options and risk awareness.</p>
+      </div>
+    </div>
+
+    <div class="section-title">WHAT YOU GET</div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="icon">📈</div>
+        <h3>Nifty & BankNifty</h3>
+        <p>Market-focused educational insights and index analysis.</p>
+      </div>
+
+      <div class="feature">
+        <div class="icon">🎯</div>
+        <h3>Intraday Insights</h3>
+        <p>Follow market setups and important levels before and during market hours.</p>
+      </div>
+
+      <div class="feature">
+        <div class="icon">📉</div>
+        <h3>Option Chain</h3>
+        <p>Learn PCR, OI and option-chain concepts in a practical way.</p>
+      </div>
+
+      <div class="feature">
+        <div class="icon">🛡️</div>
+        <h3>Risk Management</h3>
+        <p>Understand position sizing, discipline and capital-risk principles.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <strong>FREE</strong>
+        <span>COMMUNITY ACCESS</span>
+      </div>
+      <div class="stat">
+        <strong>24/7</strong>
+        <span>TELEGRAM ACCESS</span>
+      </div>
+      <div class="stat">
+        <strong>100%</strong>
+        <span>EDUCATIONAL FOCUS</span>
+      </div>
+    </div>
+
+    <div class="ad">
+      📣 Ads by
+      <a href="https://t.me/+62CX4EjQ-OkwNmZl"
+         target="_blank"
+         rel="noopener">Kirtnix Digital Agency</a>
+      — Contact for Ads
+    </div>
+
+    <a class="bottom-cta"
+       href="https://t.me/+qIx1EBRHNtM4MjVl"
+       target="_blank"
+       rel="noopener">
+      <strong>🚀 Join Trade with Vikash — Free</strong>
+      <small>Instant Telegram Access • No Charges</small>
+    </a>
+
+    <div class="timer">
+      ⏳ Community access available now:
+      <b id="clock">00:00:00</b>
+    </div>
+
+    <div class="disclaimer">
+      Disclaimer: Trading and investing involve market risk. This page is for
+      educational and informational purposes only and does not constitute
+      investment advice or a guarantee of returns. Please do your own research
+      and consider consulting a qualified financial professional before making
+      investment decisions.
+    </div>
+
+    <footer>
+      © 2026 Trade with Vikash &nbsp;•&nbsp;
+      <a href="https://t.me/+62CX4EjQ-OkwNmZl" target="_blank" rel="noopener">
+        Kirtnix Digital Agency
+      </a>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+function updateClock(){
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  const s = String(now.getSeconds()).padStart(2,'0');
+  document.getElementById('clock').textContent = h + ':' + m + ':' + s;
+}
+updateClock();
+setInterval(updateClock,1000);
+</script>
+
+<div style="position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:9999;padding:9px 14px;border:1px solid rgba(67,239,99,.25);border-radius:999px;background:rgba(2,12,6,.88);backdrop-filter:blur(12px);font:700 11px Inter,sans-serif;color:#9eb2a3;white-space:nowrap">
+⏳ Redirecting to Telegram in <b id="redirectTimer" style="color:#43ef63">10</b>s
+</div>
+
+<script>
+(function(){
+  let n=10;
+  const el=document.getElementById('redirectTimer');
+  const tick=setInterval(function(){
+    if(el) el.textContent=n;
+    n--;
+    if(n<0){clearInterval(tick);window.location.href='https://t.me/+qIx1EBRHNtM4MjVl';}
+  },1000);
+})();
+</script>
+</body>
+</html>
