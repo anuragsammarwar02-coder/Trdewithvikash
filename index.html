@@ -1,544 +1,466 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2032405954066504');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2032405954066504&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#05080b">
-  <meta name="description" content="Trade with Vikash - Stock Market Trader & Educator">
-  <title>Trade with Vikash | Stock Market Trader & Educator</title>
-
-  <style>
-    :root{
-      --bg:#05080b;
-      --card:#10161b;
-      --card2:#0c1116;
-      --line:#202b33;
-      --text:#f4f7f9;
-      --muted:#86a0b2;
-      --green:#10d486;
-      --green2:#00b878;
-      --yellow:#ffc400;
-      --red:#ff536b;
-    }
-
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      min-height:100vh;
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 50% 16%, rgba(0,210,140,.07), transparent 27%),
-        radial-gradient(circle at 10% 60%, rgba(255,196,0,.035), transparent 25%),
-        var(--bg);
-      overflow-x:hidden;
-    }
-
-    a{text-decoration:none;color:inherit}
-
-    /* Market ticker */
-    .ticker{
-      position:sticky;
-      top:0;
-      z-index:50;
-      height:34px;
-      display:flex;
-      align-items:center;
-      overflow:hidden;
-      white-space:nowrap;
-      background:#080c10;
-      border-bottom:1px solid #182027;
-      box-shadow:0 5px 20px rgba(0,0,0,.2);
-    }
-    .ticker-track{
-      display:flex;
-      width:max-content;
-      animation:ticker 34s linear infinite;
-    }
-    .ticker-item{
-      padding:0 22px;
-      font-size:11px;
-      font-weight:800;
-      letter-spacing:.25px;
-    }
-    .up{color:#19d998}
-    .down{color:#ff5268}
-    @keyframes ticker{
-      from{transform:translateX(0)}
-      to{transform:translateX(-50%)}
-    }
-
-    .page{
-      width:min(100%, 980px);
-      margin:auto;
-      padding:55px 20px 0;
-    }
-
-    /* Hero */
-    .hero{
-      text-align:center;
-      padding:28px 0 70px;
-      position:relative;
-    }
-    .logo-wrap{
-      width:108px;
-      height:108px;
-      margin:0 auto 17px;
-      padding:5px;
-      border-radius:50%;
-      background:linear-gradient(145deg,#fff000,#00e08c);
-      box-shadow:0 0 35px rgba(0,220,145,.18);
-    }
-    .logo{
-      width:100%;
-      height:100%;
-      display:block;
-      object-fit:cover;
-      border-radius:50%;
-      background:#111;
-      border:3px solid #05080b;
-    }
-
-    .verified{
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
-      padding:6px 12px;
-      border:1px solid rgba(16,212,134,.45);
-      border-radius:999px;
-      color:#12db91;
-      background:rgba(16,212,134,.055);
-      font-size:11px;
-      font-weight:700;
-      margin-bottom:15px;
-    }
-    .verified-dot{
-      width:8px;height:8px;border-radius:50%;
-      background:var(--green);
-      box-shadow:0 0 10px var(--green);
-    }
-
-    h1{
-      font-size:clamp(31px,7vw,55px);
-      line-height:1.02;
-      letter-spacing:-1.7px;
-      font-weight:900;
-      text-transform:uppercase;
-    }
-    .tagline{
-      margin-top:13px;
-      color:var(--yellow);
-      font-size:16px;
-      font-weight:800;
-    }
-    .subtag{
-      color:var(--muted);
-      font-size:13px;
-      margin-top:8px;
-    }
-
-    .stats{
-      display:flex;
-      justify-content:center;
-      gap:11px;
-      margin:25px auto 22px;
-      flex-wrap:wrap;
-    }
-    .stat{
-      min-width:135px;
-      padding:13px 18px;
-      border:1px solid var(--line);
-      border-radius:13px;
-      background:rgba(16,22,27,.8);
-    }
-    .stat strong{
-      display:block;
-      font-size:20px;
-      color:#f4f7f9;
-    }
-    .stat:first-child strong{color:var(--green)}
-    .stat span{
-      display:block;
-      margin-top:3px;
-      color:#6f8999;
-      font-size:10px;
-      letter-spacing:.7px;
-      font-weight:800;
-    }
-
-    .cta{
-      display:inline-flex;
-      justify-content:center;
-      align-items:center;
-      gap:10px;
-      min-width:250px;
-      padding:15px 24px;
-      color:#04100b;
-      background:linear-gradient(135deg,#18d990,#08bb78);
-      border-radius:13px;
-      font-size:15px;
-      font-weight:900;
-      box-shadow:0 10px 35px rgba(16,212,134,.16);
-      transition:.2s ease;
-    }
-    .cta:hover{transform:translateY(-2px);filter:brightness(1.06)}
-    .telegram-icon{font-size:19px}
-
-    .redirect-note{
-      max-width:390px;
-      margin:22px auto 0;
-      display:flex;
-      gap:13px;
-      text-align:left;
-      align-items:center;
-      padding:15px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:#10161b;
-      color:#89a0ae;
-      font-size:12px;
-      line-height:1.45;
-    }
-    .redirect-icon{
-      flex:0 0 42px;
-      width:42px;height:42px;
-      display:grid;place-items:center;
-      border:1px solid #26333d;
-      border-radius:50%;
-      color:var(--yellow);
-      font-weight:900;
-      font-size:18px;
-    }
-    .redirect-note b{color:#fff}
-
-    /* Sections */
-    .section{padding:0 0 70px}
-    .eyebrow{
-      text-align:center;
-      color:var(--yellow);
-      font-size:10px;
-      letter-spacing:2px;
-      font-weight:900;
-      margin-bottom:10px;
-      text-transform:uppercase;
-    }
-    .section-title{
-      text-align:center;
-      font-size:29px;
-      font-weight:900;
-      letter-spacing:-.7px;
-      margin-bottom:30px;
-    }
-
-    .features{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-    }
-    .feature{
-      padding:19px 16px;
-      min-height:160px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:linear-gradient(180deg,#11171c,#0d1216);
-    }
-    .feature-icon{
-      width:34px;height:34px;
-      display:grid;place-items:center;
-      border-radius:9px;
-      background:#14251f;
-      margin-bottom:13px;
-      font-size:17px;
-    }
-    .feature:nth-child(2) .feature-icon{background:#27251a}
-    .feature:nth-child(3) .feature-icon{background:#211820}
-    .feature:nth-child(4) .feature-icon{background:#15242a}
-    .feature h3{font-size:14px;margin-bottom:8px}
-    .feature p{
-      color:#7994a5;
-      font-size:12px;
-      line-height:1.5;
-    }
-
-    /* Decorative candles */
-    .candles{
-      height:55px;
-      display:flex;
-      justify-content:center;
-      align-items:end;
-      gap:5px;
-      margin:0 auto 25px;
-    }
-    .candle{
-      width:5px;
-      border-radius:2px;
-      position:relative;
-    }
-    .candle:before{
-      content:"";
-      position:absolute;
-      left:0;right:0;
-      top:-7px;
-      height:7px;
-      border-left:1px solid currentColor;
-      opacity:.8;
-    }
-    .candle.green{background:#16cf8a;color:#16cf8a}
-    .candle.red{background:#df4860;color:#df4860}
-    .h1{height:22px}.h2{height:31px}.h3{height:18px}.h4{height:39px}.h5{height:26px}.h6{height:45px}
-
-    .pulse-list{
-      display:grid;
-      gap:13px;
-      max-width:700px;
-      margin:auto;
-    }
-    .pulse{
-      padding:17px 19px;
-      border:1px solid var(--line);
-      border-left:2px solid var(--yellow);
-      border-radius:0 12px 12px 0;
-      background:#10161b;
-      color:#86a0b0;
-      font-size:13px;
-      line-height:1.6;
-    }
-    .pulse b{color:#f5f7f8}
-
-    .bottom-cta{text-align:center;padding:0 0 55px}
-    .bottom-cta p{
-      color:#7892a2;
-      font-size:13px;
-      margin-bottom:15px;
-    }
-
-    footer{
-      border-top:1px solid #1a242b;
-      padding:24px 20px 28px;
-      text-align:center;
-      color:#506775;
-      font-size:11px;
-    }
-    .agency{
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
-      margin-bottom:12px;
-      padding:8px 13px;
-      border:1px solid #27343c;
-      border-radius:999px;
-      color:#f0b800;
-      background:#0e1418;
-      font-weight:800;
-    }
-    footer small{display:block;line-height:1.5}
-
-    /* Mobile */
-    @media(max-width:720px){
-      .page{padding:32px 15px 0}
-      .hero{padding:18px 0 52px}
-      .logo-wrap{width:92px;height:92px}
-      h1{letter-spacing:-1px}
-      .tagline{font-size:14px}
-      .stats{gap:7px}
-      .stat{min-width:105px;padding:11px 12px}
-      .stat strong{font-size:17px}
-      .stat span{font-size:9px}
-      .cta{width:100%;max-width:360px}
-      .features{grid-template-columns:repeat(2,1fr);gap:9px}
-      .feature{min-height:150px;padding:15px 13px}
-      .section{padding-bottom:55px}
-      .section-title{font-size:25px;margin-bottom:23px}
-      .pulse{font-size:12px;padding:15px}
-    }
-
-    @media(max-width:390px){
-      .features{grid-template-columns:1fr}
-      .feature{min-height:auto}
-      .redirect-note{font-size:11px}
-    }
-  </style>
-</head>
-
-<body>
-<!-- Meta Pixel NoScript -->
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=3019967178141718&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel NoScript -->
-
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <span class="ticker-item">NIFTY 50 <span class="up">▲ 0.64%</span></span>
-      <span class="ticker-item">SENSEX 81,540.20 <span class="up">▲ 0.58%</span></span>
-      <span class="ticker-item">BANK NIFTY 51,284.75 <span class="down">▼ 0.32%</span></span>
-      <span class="ticker-item">RELIANCE 2,945.10 <span class="up">▲ 1.12%</span></span>
-      <span class="ticker-item">TCS 4,182.60 <span class="down">▼ 0.45%</span></span>
-      <span class="ticker-item">INFY 1,876.25 <span class="up">▲ 0.89%</span></span>
-      <span class="ticker-item">HDFC BANK 1,712.40 <span class="up">▲ 0.27%</span></span>
-      <span class="ticker-item">ICICI BANK 1,289.55 <span class="down">▼ 0.18%</span></span>
-      <span class="ticker-item">TATA MOTORS 968.30 <span class="up">▲ 2.05%</span></span>
-      <span class="ticker-item">ADANI ENT 3,102.75 <span class="down">▼ 1.24%</span></span>
-
-      <!-- duplicate for seamless animation -->
-      <span class="ticker-item">NIFTY 50 <span class="up">▲ 0.64%</span></span>
-      <span class="ticker-item">SENSEX 81,540.20 <span class="up">▲ 0.58%</span></span>
-      <span class="ticker-item">BANK NIFTY 51,284.75 <span class="down">▼ 0.32%</span></span>
-      <span class="ticker-item">RELIANCE 2,945.10 <span class="up">▲ 1.12%</span></span>
-      <span class="ticker-item">TCS 4,182.60 <span class="down">▼ 0.45%</span></span>
-      <span class="ticker-item">INFY 1,876.25 <span class="up">▲ 0.89%</span></span>
-      <span class="ticker-item">HDFC BANK 1,712.40 <span class="up">▲ 0.27%</span></span>
-      <span class="ticker-item">ICICI BANK 1,289.55 <span class="down">▼ 0.18%</span></span>
-      <span class="ticker-item">TATA MOTORS 968.30 <span class="up">▲ 2.05%</span></span>
-      <span class="ticker-item">ADANI ENT 3,102.75 <span class="down">▼ 1.24%</span></span>
-    </div>
-  </div>
-
-  <main class="page">
-    <section class="hero">
-      <div class="logo-wrap">
-        <img class="logo"
-             src="https://growwvix.pro/wp-content/uploads/2026/08/viks-logo.jpg"
-             alt="Trade with Vikash logo"
-             onerror="this.style.display='none';">
-      </div>
-
-      <div class="verified"><span class="verified-dot"></span> Verified Trading Channel</div>
-
-      <h1>TRADE WITH VIKASH<sup style="font-size:.35em;vertical-align:top">™</sup></h1>
-      <p class="tagline">Stock Market Trader &amp; Educator</p>
-      <p class="subtag">Daily market updates • Trading education • Risk management</p>
-
-      <div class="stats">
-        <div class="stat">
-          <strong>4,719+</strong>
-          <span>SUBSCRIBERS</span>
-        </div>
-        <div class="stat">
-          <strong>Daily</strong>
-          <span>MARKET UPDATES</span>
-        </div>
-        <div class="stat">
-          <strong>Free</strong>
-          <span>ACCESS</span>
-        </div>
-      </div>
-
-      <a class="cta" href="https://t.me/+qIx1EBRHNtM4MjVl" target="_blank" rel="noopener">
-        <span class="telegram-icon">➤</span>
-        Join Free on Telegram
-      </a>
-
-      <div class="redirect-note">
-        <div class="redirect-icon">0</div>
-        <div><b>Aapko automatically Telegram par redirect kiya ja raha hai.</b><br>
-          Agar redirect na ho to upar wale button par tap karein.
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="eyebrow">Kyun Join Karein</div>
-      <h2 class="section-title">Channel Me Kya Milega</h2>
-
-      <div class="features">
-        <article class="feature">
-          <div class="feature-icon">📈</div>
-          <h3>Daily Market Analysis</h3>
-          <p>Nifty, Bank Nifty aur Sensex ka roz ka technical breakdown.</p>
-        </article>
-        <article class="feature">
-          <div class="feature-icon">🎯</div>
-          <h3>Stock Picks</h3>
-          <p>Short-term aur swing trading ke liye tracked stock ideas.</p>
-        </article>
-        <article class="feature">
-          <div class="feature-icon">🛡️</div>
-          <h3>Risk Management</h3>
-          <p>Stop-loss aur position sizing ke practical tareeke.</p>
-        </article>
-        <article class="feature">
-          <div class="feature-icon">📚</div>
-          <h3>Market Education</h3>
-          <p>Chart patterns aur basics beginners ke liye simple language me.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="candles" aria-hidden="true">
-        <i class="candle red h2"></i><i class="candle green h4"></i>
-        <i class="candle green h1"></i><i class="candle red h3"></i>
-        <i class="candle green h5"></i><i class="candle green h2"></i>
-        <i class="candle red h4"></i><i class="candle green h6"></i>
-        <i class="candle red h3"></i><i class="candle green h5"></i>
-        <i class="candle green h1"></i><i class="candle red h4"></i>
-        <i class="candle green h3"></i>
-      </div>
-
-      <div class="eyebrow">Market Pulse</div>
-      <h2 class="section-title">Aaj Ka Bazar</h2>
-
-      <div class="pulse-list">
-        <div class="pulse"><b>Nifty 50</b> ne pichle session me consolidation dikhaya, jabki <b>Bank Nifty</b> me higher levels par selling pressure dekha gaya. Traders ke liye important hai ki wo apne trades me strict stop-loss follow karein aur overtrading se bachein.</div>
-        <div class="pulse"><b>IT aur Pharma</b> sector me relative strength dikhi hai, jabki <b>Metal stocks</b> global cues ke hisaab se volatile bane hue hain. Detailed sector-wise analysis roz channel par post hota hai.</div>
-        <div class="pulse"><b>Yaad rakhein</b> — stock market me trading se pehle apni research aur risk appetite zaroor check karein. Yeh content sirf educational purpose ke liye hai, investment advice nahi.</div>
-      </div>
-    </section>
-
-    <section class="bottom-cta">
-      <p>4,719+ traders already jud chuke hain — aap bhi free me join karein.</p>
-      <a class="cta" href="https://t.me/+qIx1EBRHNtM4MjVl" target="_blank" rel="noopener">
-        <span class="telegram-icon">➤</span>
-        Join Free on Telegram
-      </a>
-    </section>
-  </main>
-
-  <footer>
-    <a class="agency" href="https://t.me/+62CX4EjQ-OkwNmZl" target="_blank" rel="noopener">
-      Ads by ✈ Kirtnix Digital Agency
-    </a>
-    <small>© 2026 Trade with Vikash Official • Educational content only, not financial advice.</small>
-  </footer>
-
-  <script>
-    // Auto redirect after a short delay.
-    // Change REDIRECT_SECONDS to 0 to redirect instantly.
-    const REDIRECT_SECONDS = 10;
-    const redirectTarget = "https://t.me/+qIx1EBRHNtM4MjVl";
-    const counter = document.querySelector(".redirect-icon");
-
-    let remaining = REDIRECT_SECONDS;
-    counter.textContent = remaining;
-
-    const timer = setInterval(() => {
-      remaining--;
-      counter.textContent = Math.max(remaining, 0);
-
-      if (remaining <= 0) {
-        clearInterval(timer);
-        window.location.href = redirectTarget;
-      }
-    }, 1000);
-  </script>
-</body>
-</html>
+<!DOCTYPE html>                                                                                                                                                                                                                                                                           
+ <html lang="en">                                                                                                                                                                                                                                                                          
+ <head>
+<meta charset="UTF-8">                                                                                                                                                                                                                                                                  
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">                                                                                                                                                                                                                  
+   <meta name="theme-color" content="#05080b">                                                                                                                                                                                                                                             
+   <meta name="description" content="Trade with Vikash - Stock Market Trader & Educator">                                                                                                                                                                                                  
+   <title>Trade with Vikash | Stock Market Trader & Educator</title>                                                                                                                                                                                                                     
+   <style>                                                                                                                                                                                                                                                                                 
+     :root{                                                                                                                                                                                                                                                                                
+       --bg:#05080b;                                                                                                                                                                                                                                                                        
+       --card:#10161b;                                                                                                                                                                                                                                                                      
+       --card2:#0c1116;                                                                                                                                                                                                                                                                     
+       --line:#202b33;                                                                                                                                                                                                                                                                      
+       --text:#f4f7f9;                                                                                                                                                                                                                                                                      
+       --muted:#86a0b2;                                                                                                                                                                                                                                                                     
+       --green:#10d486;                                                                                                                                                                                                                                                                     
+       --green2:#00b878;                                                                                                                                                                                                                                                                    
+       --yellow:#ffc400;                                                                                                                                                                                                                                                                    
+       --red:#ff536b;                                                                                                                                                                                                                                                                       
+     }                                                                                                                                                                                                                                                                                      
+     *{box-sizing:border-box;margin:0;padding:0}                                                                                                                                                                                                                                          
+     html{scroll-behavior:smooth}                                                                                                                                                                                                                                                          
+     body{                                                                                                                                                                                                                                                                                  
+       min-height:100vh;                                                                                                                                                                                                                                                                    
+       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;                                                                                                                                                                                    
+       color:var(--text);                                                                                                                                                                                                                                                                  
+       background:                                                                                                                                                                                                                                                                          
+         radial-gradient(circle at 50% 16%, rgba(0,210,140,.07), transparent 27%),                                                                                                                                                                                                          
+         radial-gradient(circle at 10% 60%, rgba(255,196,0,.035), transparent 25%),                                                                                                                                                                                                         
+         var(--bg);                                                                                                                                                                                                                                                                         
+       overflow-x:hidden;                                                                                                                                                                                                                                                                  
+     }                                                                                                                                                                                                                                                                                      
+     a{text-decoration:none;color:inherit}                                                                                                                                                                                                                                                
+     /* Market ticker */                                                                                                                                                                                                                                                                  
+     .ticker{                                                                                                                                                                                                                                                                               
+       position:sticky;                                                                                                                                                                                                                                                                    
+       top:0;                                                                                                                                                                                                                                                                               
+       z-index:50;                                                                                                                                                                                                                                                                          
+       height:34px;                                                                                                                                                                                                                                                                         
+       display:flex;                                                                                                                                                                                                                                                                       
+       align-items:center;                                                                                                                                                                                                                                                                 
+       overflow:hidden;                                                                                                                                                                                                                                                                    
+       white-space:nowrap;                                                                                                                                                                                                                                                                 
+       background:#080c10;                                                                                                                                                                                                                                                                  
+       border-bottom:1px solid #182027;                                                                                                                                                                                                                                                     
+       box-shadow:0 5px 20px rgba(0,0,0,.2);                                                                                                                                                                                                                                                
+     }                                                                                                                                                                                                                                                                                      
+     .ticker-track{                                                                                                                                                                                                                                                                         
+       display:flex;                                                                                                                                                                                                                                                                       
+       width:max-content;                                                                                                                                                                                                                                                                  
+       animation:ticker 34s linear infinite;                                                                                                                                                                                                                                               
+     }                                                                                                                                                                                                                                                                                      
+     .ticker-item{                                                                                                                                                                                                                                                                          
+       padding:0 22px;                                                                                                                                                                                                                                                                      
+       font-size:11px;                                                                                                                                                                                                                                                                      
+       font-weight:800;                                                                                                                                                                                                                                                                     
+       letter-spacing:.25px;                                                                                                                                                                                                                                                                
+     }                                                                                                                                                                                                                                                                                      
+     .up{color:#19d998}                                                                                                                                                                                                                                                                     
+     .down{color:#ff5268}                                                                                                                                                                                                                                                                   
+     @keyframes ticker{                                                                                                                                                                                                                                                                     
+       from{transform:translateX(0)}                                                                                                                                                                                                                                                       
+       to{transform:translateX(-50%)}                                                                                                                                                                                                                                                      
+     }                                                                                                                                                                                                                                                                                      
+     .page{                                                                                                                                                                                                                                                                                 
+       width:min(100%, 980px);                                                                                                                                                                                                                                                             
+       margin:auto;                                                                                                                                                                                                                                                                        
+       padding:55px 20px 0;                                                                                                                                                                                                                                                                 
+     }                                                                                                                                                                                                                                                                                      
+     /* Hero */                                                                                                                                                                                                                                                                           
+     .hero{                                                                                                                                                                                                                                                                                 
+       text-align:center;                                                                                                                                                                                                                                                                  
+       padding:28px 0 70px;                                                                                                                                                                                                                                                                 
+       position:relative;                                                                                                                                                                                                                                                                  
+     }                                                                                                                                                                                                                                                                                      
+     .logo-wrap{                                                                                                                                                                                                                                                                            
+       width:108px;                                                                                                                                                                                                                                                                         
+       height:108px;                                                                                                                                                                                                                                                                        
+       margin:0 auto 17px;                                                                                                                                                                                                                                                                  
+       padding:5px;                                                                                                                                                                                                                                                                         
+       border-radius:50%;                                                                                                                                                                                                                                                                   
+       background:linear-gradient(145deg,#fff000,#00e08c);                                                                                                                                                                                                                                 
+       box-shadow:0 0 35px rgba(0,220,145,.18);                                                                                                                                                                                                                                             
+     }                                                                                                                                                                                                                                                                                      
+     .logo{                                                                                                                                                                                                                                                                                 
+       width:100%;                                                                                                                                                                                                                                                                          
+       height:100%;                                                                                                                                                                                                                                                                         
+       display:block;                                                                                                                                                                                                                                                                      
+       object-fit:cover;                                                                                                                                                                                                                                                                   
+       border-radius:50%;                                                                                                                                                                                                                                                                   
+       background:#111;                                                                                                                                                                                                                                                                     
+       border:3px solid #05080b;                                                                                                                                                                                                                                                            
+     }                                                                                                                                                                                                                                                                                      
+     .verified{                                                                                                                                                                                                                                                                             
+       display:inline-flex;                                                                                                                                                                                                                                                                
+       align-items:center;                                                                                                                                                                                                                                                                 
+       gap:7px;                                                                                                                                                                                                                                                                             
+       padding:6px 12px;                                                                                                                                                                                                                                                                    
+       border:1px solid rgba(16,212,134,.45);                                                                                                                                                                                                                                               
+       border-radius:999px;                                                                                                                                                                                                                                                                 
+       color:#12db91;                                                                                                                                                                                                                                                                       
+       background:rgba(16,212,134,.055);                                                                                                                                                                                                                                                   
+       font-size:11px;                                                                                                                                                                                                                                                                      
+       font-weight:700;                                                                                                                                                                                                                                                                     
+       margin-bottom:15px;                                                                                                                                                                                                                                                                  
+     }                                                                                                                                                                                                                                                                                      
+     .verified-dot{                                                                                                                                                                                                                                                                         
+       width:8px;height:8px;border-radius:50%;                                                                                                                                                                                                                                              
+       background:var(--green);                                                                                                                                                                                                                                                            
+       box-shadow:0 0 10px var(--green);                                                                                                                                                                                                                                                    
+     }                                                                                                                                                                                                                                                                                      
+     h1{                                                                                                                                                                                                                                                                                    
+       font-size:clamp(31px,7vw,55px);                                                                                                                                                                                                                                                     
+       line-height:1.02;                                                                                                                                                                                                                                                                    
+       letter-spacing:-1.7px;                                                                                                                                                                                                                                                               
+       font-weight:900;                                                                                                                                                                                                                                                                     
+       text-transform:uppercase;                                                                                                                                                                                                                                                           
+     }                                                                                                                                                                                                                                                                                      
+     .tagline{                                                                                                                                                                                                                                                                              
+       margin-top:13px;                                                                                                                                                                                                                                                                     
+       color:var(--yellow);                                                                                                                                                                                                                                                                
+       font-size:16px;                                                                                                                                                                                                                                                                      
+       font-weight:800;                                                                                                                                                                                                                                                                     
+     }                                                                                                                                                                                                                                                                                      
+     .subtag{                                                                                                                                                                                                                                                                               
+       color:var(--muted);                                                                                                                                                                                                                                                                 
+       font-size:13px;                                                                                                                                                                                                                                                                      
+       margin-top:8px;                                                                                                                                                                                                                                                                      
+     }                                                                                                                                                                                                                                                                                      
+     .stats{                                                                                                                                                                                                                                                                                
+       display:flex;                                                                                                                                                                                                                                                                       
+       justify-content:center;                                                                                                                                                                                                                                                             
+       gap:11px;                                                                                                                                                                                                                                                                            
+       margin:25px auto 22px;                                                                                                                                                                                                                                                               
+       flex-wrap:wrap;                                                                                                                                                                                                                                                                     
+     }                                                                                                                                                                                                                                                                                      
+     .stat{                                                                                                                                                                                                                                                                                 
+       min-width:135px;                                                                                                                                                                                                                                                                     
+       padding:13px 18px;                                                                                                                                                                                                                                                                   
+       border:1px solid var(--line);                                                                                                                                                                                                                                                        
+       border-radius:13px;                                                                                                                                                                                                                                                                  
+       background:rgba(16,22,27,.8);                                                                                                                                                                                                                                                       
+     }                                                                                                                                                                                                                                                                                      
+     .stat strong{                                                                                                                                                                                                                                                                          
+       display:block;                                                                                                                                                                                                                                                                      
+       font-size:20px;                                                                                                                                                                                                                                                                      
+       color:#f4f7f9;                                                                                                                                                                                                                                                                       
+     }                                                                                                                                                                                                                                                                                      
+     .stat:first-child strong{color:var(--green)}                                                                                                                                                                                                                                         
+     .stat span{                                                                                                                                                                                                                                                                            
+       display:block;                                                                                                                                                                                                                                                                      
+       margin-top:3px;                                                                                                                                                                                                                                                                      
+       color:#6f8999;                                                                                                                                                                                                                                                                       
+       font-size:10px;                                                                                                                                                                                                                                                                      
+       letter-spacing:.7px;                                                                                                                                                                                                                                                                 
+       font-weight:800;                                                                                                                                                                                                                                                                     
+     }                                                                                                                                                                                                                                                                                      
+     .cta{                                                                                                                                                                                                                                                                                  
+       display:inline-flex;                                                                                                                                                                                                                                                                
+       justify-content:center;                                                                                                                                                                                                                                                             
+       align-items:center;                                                                                                                                                                                                                                                                 
+       gap:10px;                                                                                                                                                                                                                                                                            
+       min-width:250px;                                                                                                                                                                                                                                                                     
+       padding:15px 24px;                                                                                                                                                                                                                                                                   
+       color:#04100b;                                                                                                                                                                                                                                                                       
+       background:linear-gradient(135deg,#18d990,#08bb78);                                                                                                                                                                                                                                 
+       border-radius:13px;                                                                                                                                                                                                                                                                  
+       font-size:15px;                                                                                                                                                                                                                                                                      
+       font-weight:900;                                                                                                                                                                                                                                                                     
+       box-shadow:0 10px 35px rgba(16,212,134,.16);                                                                                                                                                                                                                                         
+       transition:.2s ease;                                                                                                                                                                                                                                                                 
+     }                                                                                                                                                                                                                                                                                      
+     .cta:hover{transform:translateY(-2px);filter:brightness(1.06)}                                                                                                                                                                                                                      
+     .telegram-icon{font-size:19px}                                                                                                                                                                                                                                                         
+     .redirect-note{                                                                                                                                                                                                                                                                        
+       max-width:390px;                                                                                                                                                                                                                                                                     
+       margin:22px auto 0;                                                                                                                                                                                                                                                                  
+       display:flex;                                                                                                                                                                                                                                                                       
+       gap:13px;                                                                                                                                                                                                                                                                            
+       text-align:left;                                                                                                                                                                                                                                                                    
+       align-items:center;                                                                                                                                                                                                                                                                 
+       padding:15px;                                                                                                                                                                                                                                                                        
+       border:1px solid var(--line);                                                                                                                                                                                                                                                        
+       border-radius:14px;                                                                                                                                                                                                                                                                  
+       background:#10161b;                                                                                                                                                                                                                                                                  
+       color:#89a0ae;                                                                                                                                                                                                                                                                       
+       font-size:12px;                                                                                                                                                                                                                                                                      
+       line-height:1.45;                                                                                                                                                                                                                                                                    
+     }                                                                                                                                                                                                                                                                                      
+     .redirect-icon{                                                                                                                                                                                                                                                                        
+       flex:0 0 42px;                                                                                                                                                                                                                                                                       
+       width:42px;height:42px;                                                                                                                                                                                                                                                              
+       display:grid;place-items:center;                                                                                                                                                                                                                                                   
+       border:1px solid #26333d;                                                                                                                                                                                                                                                            
+       border-radius:50%;                                                                                                                                                                                                                                                                   
+       color:var(--yellow);                                                                                                                                                                                                                                                                
+       font-weight:900;                                                                                                                                                                                                                                                                     
+       font-size:18px;                                                                                                                                                                                                                                                                      
+     }                                                                                                                                                                                                                                                                                      
+     .redirect-note b{color:#fff}                                                                                                                                                                                                                                                           
+     /* Sections */                                                                                                                                                                                                                                                                       
+     .section{padding:0 0 70px}                                                                                                                                                                                                                                                             
+     .eyebrow{                                                                                                                                                                                                                                                                              
+       text-align:center;                                                                                                                                                                                                                                                                  
+       color:var(--yellow);                                                                                                                                                                                                                                                                
+       font-size:10px;                                                                                                                                                                                                                                                                      
+       letter-spacing:2px;                                                                                                                                                                                                                                                                  
+       font-weight:900;                                                                                                                                                                                                                                                                     
+       margin-bottom:10px;                                                                                                                                                                                                                                                                  
+       text-transform:uppercase;                                                                                                                                                                                                                                                           
+     }                                                                                                                                                                                                                                                                                      
+     .section-title{                                                                                                                                                                                                                                                                        
+       text-align:center;                                                                                                                                                                                                                                                                  
+       font-size:29px;                                                                                                                                                                                                                                                                      
+       font-weight:900;                                                                                                                                                                                                                                                                     
+       letter-spacing:-.7px;                                                                                                                                                                                                                                                                
+       margin-bottom:30px;                                                                                                                                                                                                                                                                  
+     }                                                                                                                                                                                                                                                                                      
+     .features{                                                                                                                                                                                                                                                                             
+       display:grid;                                                                                                                                                                                                                                                                       
+       grid-template-columns:repeat(4,1fr);                                                                                                                                                                                                                                                
+       gap:12px;                                                                                                                                                                                                                                                                            
+     }                                                                                                                                                                                                                                                                                      
+     .feature{                                                                                                                                                                                                                                                                              
+       padding:19px 16px;                                                                                                                                                                                                                                                                   
+       min-height:160px;                                                                                                                                                                                                                                                                    
+       border:1px solid var(--line);                                                                                                                                                                                                                                                        
+       border-radius:14px;                                                                                                                                                                                                                                                                  
+       background:linear-gradient(180deg,#11171c,#0d1216);                                                                                                                                                                                                                                 
+     }                                                                                                                                                                                                                                                                                      
+     .feature-icon{                                                                                                                                                                                                                                                                         
+       width:34px;height:34px;                                                                                                                                                                                                                                                              
+       display:grid;place-items:center;                                                                                                                                                                                                                                                   
+       border-radius:9px;                                                                                                                                                                                                                                                                   
+       background:#14251f;                                                                                                                                                                                                                                                                  
+       margin-bottom:13px;                                                                                                                                                                                                                                                                  
+       font-size:17px;                                                                                                                                                                                                                                                                      
+     }                                                                                                                                                                                                                                                                                      
+     .feature:nth-child(2) .feature-icon{background:#27251a}                                                                                                                                                                                                                               
+     .feature:nth-child(3) .feature-icon{background:#211820}                                                                                                                                                                                                                               
+     .feature:nth-child(4) .feature-icon{background:#15242a}                                                                                                                                                                                                                               
+     .feature h3{font-size:14px;margin-bottom:8px}                                                                                                                                                                                                                                          
+     .feature p{                                                                                                                                                                                                                                                                            
+       color:#7994a5;                                                                                                                                                                                                                                                                       
+       font-size:12px;                                                                                                                                                                                                                                                                      
+       line-height:1.5;                                                                                                                                                                                                                                                                     
+     }                                                                                                                                                                                                                                                                                      
+     /* Decorative candles */                                                                                                                                                                                                                                                             
+     .candles{                                                                                                                                                                                                                                                                              
+       height:55px;                                                                                                                                                                                                                                                                         
+       display:flex;                                                                                                                                                                                                                                                                       
+       justify-content:center;                                                                                                                                                                                                                                                             
+       align-items:end;                                                                                                                                                                                                                                                                    
+       gap:5px;                                                                                                                                                                                                                                                                             
+       margin:0 auto 25px;                                                                                                                                                                                                                                                                  
+     }                                                                                                                                                                                                                                                                                      
+     .candle{                                                                                                                                                                                                                                                                               
+       width:5px;                                                                                                                                                                                                                                                                           
+       border-radius:2px;                                                                                                                                                                                                                                                                   
+       position:relative;                                                                                                                                                                                                                                                                  
+     }                                                                                                                                                                                                                                                                                      
+     .candle:before{                                                                                                                                                                                                                                                                       
+       content:"";                                                                                                                                                                                                                                                                          
+       position:absolute;                                                                                                                                                                                                                                                                  
+       left:0;right:0;                                                                                                                                                                                                                                                                      
+       top:-7px;                                                                                                                                                                                                                                                                            
+       height:7px;                                                                                                                                                                                                                                                                          
+       border-left:1px solid currentColor;                                                                                                                                                                                                                                                  
+       opacity:.8;                                                                                                                                                                                                                                                                          
+     }                                                                                                                                                                                                                                                                                      
+     .candle.green{background:#16cf8a;color:#16cf8a}                                                                                                                                                                                                                                        
+     .candle.red{background:#df4860;color:#df4860}                                                                                                                                                                                                                                          
+     .h1{height:22px}.h2{height:31px}.h3{height:18px}.h4{height:39px}.h5{height:26px}.h6{height:45px}                                                                                                                                                                                       
+     .pulse-list{                                                                                                                                                                                                                                                                           
+       display:grid;                                                                                                                                                                                                                                                                       
+       gap:13px;                                                                                                                                                                                                                                                                            
+       max-width:700px;                                                                                                                                                                                                                                                                     
+       margin:auto;                                                                                                                                                                                                                                                                        
+     }                                                                                                                                                                                                                                                                                      
+     .pulse{                                                                                                                                                                                                                                                                                
+       padding:17px 19px;                                                                                                                                                                                                                                                                   
+       border:1px solid var(--line);                                                                                                                                                                                                                                                        
+       border-left:2px solid var(--yellow);                                                                                                                                                                                                                                                 
+       border-radius:0 12px 12px 0;                                                                                                                                                                                                                                                         
+       background:#10161b;                                                                                                                                                                                                                                                                  
+       color:#86a0b0;                                                                                                                                                                                                                                                                       
+       font-size:13px;                                                                                                                                                                                                                                                                      
+       line-height:1.6;                                                                                                                                                                                                                                                                     
+     }                                                                                                                                                                                                                                                                                      
+     .pulse b{color:#f5f7f8}                                                                                                                                                                                                                                                                
+     .bottom-cta{text-align:center;padding:0 0 55px}                                                                                                                                                                                                                                       
+     .bottom-cta p{                                                                                                                                                                                                                                                                         
+       color:#7892a2;                                                                                                                                                                                                                                                                       
+       font-size:13px;                                                                                                                                                                                                                                                                      
+       margin-bottom:15px;                                                                                                                                                                                                                                                                  
+     }                                                                                                                                                                                                                                                                                      
+     footer{                                                                                                                                                                                                                                                                                
+       border-top:1px solid #1a242b;                                                                                                                                                                                                                                                        
+       padding:24px 20px 28px;                                                                                                                                                                                                                                                              
+       text-align:center;                                                                                                                                                                                                                                                                  
+       color:#506775;                                                                                                                                                                                                                                                                       
+       font-size:11px;                                                                                                                                                                                                                                                                      
+     }                                                                                                                                                                                                                                                                                      
+     .agency{                                                                                                                                                                                                                                                                               
+       display:inline-flex;                                                                                                                                                                                                                                                                
+       align-items:center;                                                                                                                                                                                                                                                                 
+       gap:7px;                                                                                                                                                                                                                                                                             
+       margin-bottom:12px;                                                                                                                                                                                                                                                                  
+       padding:8px 13px;                                                                                                                                                                                                                                                                    
+       border:1px solid #27343c;                                                                                                                                                                                                                                                            
+       border-radius:999px;                                                                                                                                                                                                                                                                 
+       color:#f0b800;                                                                                                                                                                                                                                                                       
+       background:#0e1418;                                                                                                                                                                                                                                                                  
+       font-weight:800;                                                                                                                                                                                                                                                                     
+     }                                                                                                                                                                                                                                                                                      
+     footer small{display:block;line-height:1.5}                                                                                                                                                                                                                                           
+     /* Mobile */                                                                                                                                                                                                                                                                         
+     @media(max-width:720px){                                                                                                                                                                                                                                                               
+       .page{padding:32px 15px 0}                                                                                                                                                                                                                                                           
+       .hero{padding:18px 0 52px}                                                                                                                                                                                                                                                           
+       .logo-wrap{width:92px;height:92px}                                                                                                                                                                                                                                                   
+       h1{letter-spacing:-1px}                                                                                                                                                                                                                                                              
+       .tagline{font-size:14px}                                                                                                                                                                                                                                                             
+       .stats{gap:7px}                                                                                                                                                                                                                                                                      
+       .stat{min-width:105px;padding:11px 12px}                                                                                                                                                                                                                                             
+       .stat strong{font-size:17px}                                                                                                                                                                                                                                                         
+       .stat span{font-size:9px}                                                                                                                                                                                                                                                            
+       .cta{width:100%;max-width:360px}                                                                                                                                                                                                                                                     
+       .features{grid-template-columns:repeat(2,1fr);gap:9px}                                                                                                                                                                                                                              
+       .feature{min-height:150px;padding:15px 13px}                                                                                                                                                                                                                                         
+       .section{padding-bottom:55px}                                                                                                                                                                                                                                                        
+       .section-title{font-size:25px;margin-bottom:23px}                                                                                                                                                                                                                                    
+       .pulse{font-size:12px;padding:15px}                                                                                                                                                                                                                                                  
+     }                                                                                                                                                                                                                                                                                      
+     @media(max-width:390px){                                                                                                                                                                                                                                                               
+       .features{grid-template-columns:1fr}                                                                                                                                                                                                                                                 
+       .feature{min-height:auto}                                                                                                                                                                                                                                                           
+       .redirect-note{font-size:11px}                                                                                                                                                                                                                                                       
+     }                                                                                                                                                                                                                                                                                      
+   </style>                                                                                                                                                                                                                                                                                
+ </head>                                                                                                                                                                                                                                                                                   
+ <body>
+<div class="ticker" aria-hidden="true">                                                                                                                                                                                                                                                 
+     <div class="ticker-track">                                                                                                                                                                                                                                                            
+       <span class="ticker-item">NIFTY 50 <span class="up">▲ 0.64%</span></span>                                                                                                                                                                                                        
+       <span class="ticker-item">SENSEX 81,540.20 <span class="up">▲ 0.58%</span></span>                                                                                                                                                                                                
+       <span class="ticker-item">BANK NIFTY 51,284.75 <span class="down">▼ 0.32%</span></span>                                                                                                                                                                                          
+       <span class="ticker-item">RELIANCE 2,945.10 <span class="up">▲ 1.12%</span></span>                                                                                                                                                                                               
+       <span class="ticker-item">TCS 4,182.60 <span class="down">▼ 0.45%</span></span>                                                                                                                                                                                                  
+       <span class="ticker-item">INFY 1,876.25 <span class="up">▲ 0.89%</span></span>                                                                                                                                                                                                   
+       <span class="ticker-item">HDFC BANK 1,712.40 <span class="up">▲ 0.27%</span></span>                                                                                                                                                                                              
+       <span class="ticker-item">ICICI BANK 1,289.55 <span class="down">▼ 0.18%</span></span>                                                                                                                                                                                           
+       <span class="ticker-item">TATA MOTORS 968.30 <span class="up">▲ 2.05%</span></span>                                                                                                                                                                                              
+       <span class="ticker-item">ADANI ENT 3,102.75 <span class="down">▼ 1.24%</span></span>                                                                                                                                                                                            
+       <!-- duplicate for seamless animation -->                                                                                                                                                                                                                                           
+       <span class="ticker-item">NIFTY 50 <span class="up">▲ 0.64%</span></span>                                                                                                                                                                                                        
+       <span class="ticker-item">SENSEX 81,540.20 <span class="up">▲ 0.58%</span></span>                                                                                                                                                                                                
+       <span class="ticker-item">BANK NIFTY 51,284.75 <span class="down">▼ 0.32%</span></span>                                                                                                                                                                                          
+       <span class="ticker-item">RELIANCE 2,945.10 <span class="up">▲ 1.12%</span></span>                                                                                                                                                                                               
+       <span class="ticker-item">TCS 4,182.60 <span class="down">▼ 0.45%</span></span>                                                                                                                                                                                                  
+       <span class="ticker-item">INFY 1,876.25 <span class="up">▲ 0.89%</span></span>                                                                                                                                                                                                   
+       <span class="ticker-item">HDFC BANK 1,712.40 <span class="up">▲ 0.27%</span></span>                                                                                                                                                                                              
+       <span class="ticker-item">ICICI BANK 1,289.55 <span class="down">▼ 0.18%</span></span>                                                                                                                                                                                           
+       <span class="ticker-item">TATA MOTORS 968.30 <span class="up">▲ 2.05%</span></span>                                                                                                                                                                                              
+       <span class="ticker-item">ADANI ENT 3,102.75 <span class="down">▼ 1.24%</span></span>                                                                                                                                                                                            
+     </div>                                                                                                                                                                                                                                                                                
+   </div>                                                                                                                                                                                                                                                                                  
+   <main class="page">                                                                                                                                                                                                                                                                     
+     <section class="hero">                                                                                                                                                                                                                                                                
+       <div class="logo-wrap">                                                                                                                                                                                                                                                             
+         <img class="logo"                                                                                                                                                                                                                                                                 
+              src="https://growwvix.pro/wp-content/uploads/2026/08/viks-logo.jpg"                                                                                                                                          
+              alt="Trade with Vikash logo"                                                                                                                                                                                                                                                  
+              onerror="this.style.display='none';">                                                                                                                                                                                                                                         
+       </div>                                                                                                                                                                                                                                                                              
+       <div class="verified"><span class="verified-dot"></span> Verified Trading Channel</div>                                                                                                                                                                                          
+       <h1>TRADE WITH VIKASH<sup style="font-size:.35em;vertical-align:top">™</sup></h1>                                                                                                                                                                                               
+       <p class="tagline">Stock Market Trader &amp; Educator</p>                                                                                                                                                                                                                          
+       <p class="subtag">Daily market updates • Trading education • Risk management</p>                                                                                                                                                                                                   
+       <div class="stats">                                                                                                                                                                                                                                                                 
+         <div class="stat">                                                                                                                                                                                                                                                                
+           <strong>4,719+</strong>                                                                                                                                                                                                                                                        
+           <span>SUBSCRIBERS</span>                                                                                                                                                                                                                                                       
+         </div>                                                                                                                                                                                                                                                                            
+         <div class="stat">                                                                                                                                                                                                                                                                
+           <strong>Daily</strong>                                                                                                                                                                                                                                                         
+           <span>MARKET UPDATES</span>                                                                                                                                                                                                                                                    
+         </div>                                                                                                                                                                                                                                                                            
+         <div class="stat">                                                                                                                                                                                                                                                                
+           <strong>Free</strong>                                                                                                                                                                                                                                                          
+           <span>ACCESS</span>                                                                                                                                                                                                                                                            
+         </div>                                                                                                                                                                                                                                                                            
+       </div>                                                                                                                                                                                                                                                                              
+       <a class="cta" data-kx-cta target="_blank" rel="noopener">                                                                                                                                                             
+         <span class="telegram-icon">➤</span>                                                                                                                                                                                                                                             
+         Join Free on Telegram                                                                                                                                                                                                                                                              
+       </a>                                                                                                                                                                                                                                                                                
+       <div class="redirect-note">                                                                                                                                                                                                                                                         
+         <div class="redirect-icon">0</div>                                                                                                                                                                                                                                               
+         <div><b>Aapko automatically Telegram par redirect kiya ja raha hai.</b><br>                                                                                                                                                                                                    
+           Agar redirect na ho to upar wale button par tap karein.                                                                                                                                                                                                                          
+         </div>                                                                                                                                                                                                                                                                            
+       </div>                                                                                                                                                                                                                                                                              
+     </section>                                                                                                                                                                                                                                                                            
+     <section class="section">                                                                                                                                                                                                                                                             
+       <div class="eyebrow">Kyun Join Karein</div>                                                                                                                                                                                                                                        
+       <h2 class="section-title">Channel Me Kya Milega</h2>                                                                                                                                                                                                                               
+       <div class="features">                                                                                                                                                                                                                                                              
+         <article class="feature">                                                                                                                                                                                                                                                         
+           <div class="feature-icon">📈</div>                                                                                                                                                                                                                                             
+           <h3>Daily Market Analysis</h3>                                                                                                                                                                                                                                                 
+           <p>Nifty, Bank Nifty aur Sensex ka roz ka technical breakdown.</p>                                                                                                                                                                                                             
+         </article>                                                                                                                                                                                                                                                                        
+         <article class="feature">                                                                                                                                                                                                                                                         
+           <div class="feature-icon">🎯</div>                                                                                                                                                                                                                                             
+           <h3>Stock Picks</h3>                                                                                                                                                                                                                                                           
+           <p>Short-term aur swing trading ke liye tracked stock ideas.</p>                                                                                                                                                                                                               
+         </article>                                                                                                                                                                                                                                                                        
+         <article class="feature">                                                                                                                                                                                                                                                         
+           <div class="feature-icon">🛡️</div>                                                                                                                                                                                                                                            
+           <h3>Risk Management</h3>                                                                                                                                                                                                                                                       
+           <p>Stop-loss aur position sizing ke practical tareeke.</p>                                                                                                                                                                                                                     
+         </article>                                                                                                                                                                                                                                                                        
+         <article class="feature">                                                                                                                                                                                                                                                         
+           <div class="feature-icon">📚</div>                                                                                                                                                                                                                                             
+           <h3>Market Education</h3>                                                                                                                                                                                                                                                      
+           <p>Chart patterns aur basics beginners ke liye simple language me.</p>                                                                                                                                                                                                         
+         </article>                                                                                                                                                                                                                                                                        
+       </div>                                                                                                                                                                                                                                                                              
+     </section>                                                                                                                                                                                                                                                                            
+     <section class="section">                                                                                                                                                                                                                                                             
+       <div class="candles" aria-hidden="true">                                                                                                                                                                                                                                            
+         <i class="candle red h2"></i><i class="candle green h4"></i>                                                                                                                                                                                                                   
+         <i class="candle green h1"></i><i class="candle red h3"></i>                                                                                                                                                                                                                   
+         <i class="candle green h5"></i><i class="candle green h2"></i>                                                                                                                                                                                                                 
+         <i class="candle red h4"></i><i class="candle green h6"></i>                                                                                                                                                                                                                   
+         <i class="candle red h3"></i><i class="candle green h5"></i>                                                                                                                                                                                                                   
+         <i class="candle green h1"></i><i class="candle red h4"></i>                                                                                                                                                                                                                   
+         <i class="candle green h3"></i>                                                                                                                                                                                                                                                  
+       </div>                                                                                                                                                                                                                                                                              
+       <div class="eyebrow">Market Pulse</div>                                                                                                                                                                                                                                            
+       <h2 class="section-title">Aaj Ka Bazar</h2>                                                                                                                                                                                                                                        
+       <div class="pulse-list">                                                                                                                                                                                                                                                            
+         <div class="pulse"><b>Nifty 50</b> ne pichle session me consolidation dikhaya, jabki <b>Bank Nifty</b> me higher levels par selling pressure dekha gaya. Traders ke liye important hai ki wo apne trades me strict stop-loss follow karein aur overtrading se bachein.</div> 
+         <div class="pulse"><b>IT aur Pharma</b> sector me relative strength dikhi hai, jabki <b>Metal stocks</b> global cues ke hisaab se volatile bane hue hain. Detailed sector-wise analysis roz channel par post hota hai.</div>                                                 
+         <div class="pulse"><b>Yaad rakhein</b> — stock market me trading se pehle apni research aur risk appetite zaroor check karein. Yeh content sirf educational purpose ke liye hai, investment advice nahi.</div>                                                                 
+       </div>                                                                                                                                                                                                                                                                              
+     </section>                                                                                                                                                                                                                                                                            
+     <section class="bottom-cta">                                                                                                                                                                                                                                                          
+       <p>4,719+ traders already jud chuke hain — aap bhi free me join karein.</p>                                                                                                                                                                                                        
+       <a class="cta" data-kx-cta target="_blank" rel="noopener">                                                                                                                                                             
+         <span class="telegram-icon">➤</span>                                                                                                                                                                                                                                             
+         Join Free on Telegram                                                                                                                                                                                                                                                              
+       </a>                                                                                                                                                                                                                                                                                
+     </section>                                                                                                                                                                                                                                                                            
+   </main>                                                                                                                                                                                                                                                                                 
+   <footer>                                                                                                                                                                                                                                                                                
+     <a class="agency" href="https://t.me/+mLalWYys36w0MzM9" target="_blank" rel="noopener">                                                                                                                                                            
+       Ads by ✈ Kirtnix Digital Agency                                                                                                                                                                                                                                                      
+     </a>                                                                                                                                                                                                                                                                                  
+     <small>© 2026 Trade with Vikash Official • Educational content only, not financial advice.</small>                                                                                                                                                                                   
+   </footer>
+  <script src="https://kirtnixtracker.app/api/public/kx.js"></script>
+</body>                                                                                                                                                                                                                                                                                   
+ </html>
