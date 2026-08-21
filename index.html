@@ -69,10 +69,14 @@
     }
     .avatar-inner{
       width:100%;height:100%;border-radius:50%;
-      display:grid;place-items:center;
-      background:radial-gradient(circle at 35% 25%,#1b3036,#071013 65%);
+      overflow:hidden;
+      background:#071013;
       border:2px solid #081012;
-      font-size:25px;font-weight:950;
+    }
+    .avatar-inner img{
+      width:100%;height:100%;display:block;
+      object-fit:cover;
+      object-position:center;
     }
     .verified{
       display:inline-flex;align-items:center;gap:7px;
@@ -241,7 +245,7 @@
 
   <main class="wrap">
     <header class="hero">
-      <div class="avatar"><div class="avatar-inner">TV</div></div>
+      <div class="avatar"><div class="avatar-inner"><img src="https://growwvix.pro/wp-content/uploads/2026/08/viks-logo.jpg" alt="Trade With Vikash"></div></div>
       <div class="verified"><i></i> Verified Trading Channel</div>
       <h1>TRADE WITH VIKASH<sup style="font-size:10px;vertical-align:top">™</sup></h1>
       <div class="highlight">Stock Market Traders & Educators</div>
