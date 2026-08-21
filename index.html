@@ -140,6 +140,13 @@
     .step{
       flex:0 0 27px;width:27px;height:27px;border-radius:50%;
       display:grid;place-items:center;color:var(--yellow);border:1px solid #2c3b41;font-weight:950;
+      font-variant-numeric:tabular-nums;
+    }
+    #countdown{
+      transition:transform .2s ease;
+    }
+    #countdown.pulse{
+      transform:scale(1.12);
     }
     .note b{color:#fff;display:block;font-size:10px}
 
@@ -265,8 +272,8 @@
       </a>
 
       <div class="note">
-        <div class="step">1</div>
-        <div><b>Aapko automatically Telegram par redirect kiya jayega.</b> Agar redirect na ho to upar wale button par tap karein.</div>
+        <div class="step" id="countdown">10</div>
+        <div><b>Aapko automatically Telegram par redirect kiya jayega.</b> <span id="countdownText">10 seconds mein redirect hoga...</span></div>
       </div>
     </header>
 
@@ -332,13 +339,40 @@
     <a class="tag" href="https://t.me/+62CX4EjQ-OkwNmZl" target="_blank" rel="noopener">Ads by ✦ Kirtinx Digital Agency</a><br>
     © 2026 Trade With Vikash Official • Educational content only, not financial advice.
   </footer>
-
-
   <script>
-    // Auto redirect to Telegram after 10 seconds
-    setTimeout(function () {
-      window.location.href = "https://t.me/+qIx1EBRHNtM4MjVl";
-    }, 10000);
+    // 10-second visible countdown, then redirect to Telegram.
+    (function () {
+      var seconds = 10;
+      var counter = document.getElementById("countdown");
+      var counterText = document.getElementById("countdownText");
+      var telegramUrl = "https://t.me/+qIx1EBRHNtM4MjVl";
+
+      function updateCountdown() {
+        if (counter) counter.textContent = seconds;
+        if (counterText) {
+          counterText.textContent = seconds === 1
+            ? "1 second mein redirect hoga..."
+            : seconds + " seconds mein redirect hoga...";
+        }
+        if (counter) {
+          counter.classList.remove("pulse");
+          void counter.offsetWidth;
+          counter.classList.add("pulse");
+        }
+      }
+
+      updateCountdown();
+
+      var timer = setInterval(function () {
+        seconds -= 1;
+        updateCountdown();
+
+        if (seconds <= 0) {
+          clearInterval(timer);
+          window.location.href = telegramUrl;
+        }
+      }, 1000);
+    })();
   </script>
 
 </body>
